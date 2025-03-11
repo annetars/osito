@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>t'estimo osito</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center h-screen bg-pink-300 text-center">
+
+    <div class="bg-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold text-gray-800">Queda menys per abraçar-te de nou! T'estimo osito</h1>
+        <div class="text-4xl font-bold text-pink-600 my-4" id="countdown"></div>
+        <img src="Imatge-osito.jpg" alt="Kawaii Hug" class="mx-auto w-40">
+        <audio id="alertSound" src="https://www.myinstants.com/media/sounds/kawaii.mp3"></audio>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date("March 15, 2025 09:00:00").getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                document.getElementById("countdown").innerHTML = "💖 Ja ha arribat el moment! 💖";
+                document.getElementById("alertSound").play();
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+
+</body>
+</html>
